@@ -21,10 +21,10 @@ filtered by vendor IDs between 8 and 10 (inclusive) using either:
 	2.  one condition using BETWEEN
 */
 -- option 1
-select (quantity * cost_to_customer_per_qty) as price, * from customer_purchases where  product_id >= 8 and product_id <= 10 ;
+select (quantity * cost_to_customer_per_qty) as price, * from customer_purchases where  product_id >= 8 and product_id <= 10 order by market_date, vendor_id, product_id;
 
 -- option 2
-select (quantity * cost_to_customer_per_qty) as price, * from customer_purchases where  product_id between 8 and 10 ;
+select (quantity * cost_to_customer_per_qty) as price, * from customer_purchases where  product_id between 8 and 10 order by market_date, vendor_id, product_id;
 
 --CASE
 /* 1. Products can be sold by the individual unit or by bulk measures like lbs. or oz. 
