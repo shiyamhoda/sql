@@ -18,7 +18,7 @@ Edit the appropriate columns -- you're making two edits -- and the NULL rows wil
 All the other rows will remain the same.) */
 
 SELECT 
-product_name || ', ' || coalesce(product_size,'')|| ' (' || coalesce(product_qty_type,'unit') || ')'
+product_name || ', ' || coalesce(product_size,'')|| ' (' || coalesce(product_qty_type,'unit') || ')' product_details
 FROM product;
 
 
@@ -86,7 +86,6 @@ Hint: you might need to use INSTR(product_name,'-') to find the hyphens. INSTR w
 
 select 
   product_name
-  --,case when instr(product_name, '-') = 0 then length(product_name) else instr(product_name, '-') end as l
 ,substr(product_name, case when instr(product_name, '-') = 0 then NULL else instr(product_name, '-') + 2 end ) description
 from product;
 
