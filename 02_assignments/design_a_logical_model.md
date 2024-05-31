@@ -5,17 +5,34 @@ Create a logical model for a small bookstore. 📚
 
 At the minimum it should have employee, order, sales, customer, and book entities (tables). Determine sensible column and table design based on what you know about these concepts. Keep it simple, but work out sensible relationships to keep tables reasonably sized. Include a date table. There are several tools online you can use, I'd recommend [_Draw.io_](https://www.drawio.com/) or [_LucidChart_](https://www.lucidchart.com/pages/).
 
+
+
+![Logical_ERD_Q1](..\03_homework\bookStoreLogical1.jpeg)
+
 ## Question 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+
+
+![Logical_ERD_Q2](..\03_homework\bookStoreLogical2.jpeg)
 
 ## Question 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2?
 
 _Hint, search type 1 vs type 2 slowly changing dimensions._
 
+Type 1 Slowly changing dimension does not preserve history. Only the most recent version of the data is available.
+
+Type1 SCD  
+
+![Type1-Slowly_changing_dim](..\03_homework\CUSTOMER_ADDRESS_TYPE1.png)
+
+Type 2 Slowly changing dimension does preserves history. New version of the customer address in inserted as a new row with addition columns like eff_strt_date and End date signifying which record in the current version.  
+
+![Type2-Slowly_changing_dim](..\03_homework\CUSTOMER_ADDRESS_TYPE2.png)
+
 Bonus: Are there privacy implications to this, why or why not?
 ```
-Your answer...
+Customer address is a personal data field. In order to prevent and privacy or ethical implications we must ensure this information is only available on the need basis. In all testing and development system this field should be masked. In production system there should be stringent data access rules to ensure that only those users who need the information should have access to the customer address details. 
 ```
 
 ## Question 4
@@ -23,7 +40,9 @@ Review the AdventureWorks Schema [here](https://i.stack.imgur.com/LMu4W.gif)
 
 Highlight at least two differences between it and your ERD. Would you change anything in yours?
 ```
-Your answer...
+The AdventureWorks schema is an extremly detailed ER design, while our book store design is very simple. It seems the the Adventure works schema is normalised and each entity is defined taking into consideration all the factors around system performance and the ability to implement stringent data access policies. The two major differences i see are 
+1. Our bookstore schema design was a simple star schema model, while the adventure works schema design looks like at least a 3NF schema design.  
+2. Our bookstore model only has one schema while AdventureWorks model has multiple schemas each having a group of tables. 
 ```
 
 # Criteria
